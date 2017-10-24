@@ -4,7 +4,42 @@
 
 <mapper namespace="com.kaishengit.mapper.BookMapper">
 
-    <select id="findBookById" parameterType="int" resultType="book">
+    <resultMap id="bookMap" type="book">
+        <id column="id" property="id"/>
+        <result column="book_name" property="bookName"/>
+        <result column="price" property="price"/>
+        <result column="author_id" property="authorId"/>
+        <result column="type_id" property="typeId"/>
+        <association property="author" javaType="author">
+            <id column="author_id" property="id"/>
+            <result column="author_name" property="authorName"/>
+        </association>
+        <association property="type" javaType="type">
+            <id column="type_id" property="id"/>
+            <result column="type_name" property="typeName"/>
+        </association>
+    </resultMap>
+
+    <select id="findBookById" parameterType="int" resultMap="bookMap">
+        SELECT
+            b.id,
+            b.book_name,
+            b.price,
+            author_id,
+            author_name,
+            type_id,
+            type_name
+        FROM
+            t_book b,
+            t_author a,
+            t_type t
+        WHERE
+            b.author_id = a.id
+        AND b.type_id = t.id
+        AND b.id = #{id};
+    </select>
+
+    <!--<select id="findBookById" parameterType="int" resultType="book">
         SELECT
             b.id,
             b.book_name,
@@ -23,8 +58,8 @@
             b.author_id = a.id
         AND b.type_id = t.id
         AND b.id = #{id};
-    </select>
-
+    </select>-->
+    
     <select id="findPage" resultType="Book">
        SELECT
             b.id,
@@ -46,4 +81,24 @@
         LIMIT #{offset},#{size};
     </select>
 
+    <select id="findByTypeId" parameterType="int" resultType="book" >
+        SELECT
+            b.id,
+            b.book_name,
+            b.price,
+            author_id,
+            author_id as 'author.id',
+            author_name as 'author.authorName',
+            type_id,
+            type_id as 'type.id',
+            type_name as 'type.typeName'
+        FROM
+            t_book b,
+            t_author a,
+            t_type t
+        WHERE
+            b.author_id = a.id
+        AND b.type_id = t.id
+        AND b.type_id = #{typeId}
+    </select>
 </mapper>

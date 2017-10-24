@@ -43,4 +43,12 @@ public class BookMapperTestCase {
         }
     }
 
+    @Test
+    public void findByTypeIdTest() {
+        List<Book> bookList = bookMapper.findByTypeId(8);
+        for(Book book : bookList) {
+            System.out.println(book);
+        }
+    }
+
 }

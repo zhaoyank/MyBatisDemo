@@ -11,4 +11,5 @@ import java.util.List;
 public interface BookMapper {
     Book findBookById(Integer id);
     List<Book> findPage(@Param("offset")int offset, @Param("size") int size);
+    List<Book> findByTypeId(Integer typeId);
 }
