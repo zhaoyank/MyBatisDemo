@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kaishengit.mapper.BookMapper">
+
+    <select id="findBookById" parameterType="int" resultType="book">
+        SELECT
+            b.id,
+            b.book_name,
+            b.price,
+            author_id,
+            author_id as 'author.id',
+            author_name as 'author.authorName',
+            type_id,
+            type_id as 'type.id',
+            type_name as 'type.typeName'
+        FROM
+            t_book b,
+            t_author a,
+            t_type t
+        WHERE
+            b.author_id = a.id
+        AND b.type_id = t.id
+        AND b.id = #{id};
+    </select>
+
+    <select id="findPage" resultType="Book">
+       SELECT
+            b.id,
+            b.book_name,
+            b.price,
+            author_id,
+            author_id as 'author.id',
+            author_name as 'author.authorName',
+            type_id,
+            type_id as 'type.id',
+            type_name as 'type.typeName'
+        FROM
+            t_book b,
+            t_author a,
+            t_type t
+        WHERE
+            b.author_id = a.id
+        AND b.type_id = t.id
+        LIMIT #{offset},#{size};
+    </select>
+
+</mapper>
