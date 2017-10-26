@@ -25,8 +25,11 @@
     
     <mappers>
         <mapper resource="mapper/BookMapper.xml"/>
-        <mapper resource="mapper/AuthorMapper.xml"/>
-        <mapper resource="mapper/TypeMapper.xml"/>
+        <mapper class="com.kaishengit.mapper.AuthorMapper"/>
+        <mapper class="com.kaishengit.mapper.TypeMapper"/>
+        <!--<mapper resource="mapper/AuthorMapper.xml"/>-->
+        <!--<mapper resource="mapper/TypeMapper.xml"/>-->
         <mapper resource="mapper/StudentMapper.xml"/>
+        <!--<mapper class="com.kaishengit.mapper.StudentMapper"/>-->
     </mappers>
 </configuration>

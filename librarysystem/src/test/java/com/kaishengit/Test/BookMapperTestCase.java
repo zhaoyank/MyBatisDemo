@@ -35,7 +35,9 @@ public class BookMapperTestCase {
     @Test
     public void findBookByIdTest() {
         Book book = bookMapper.findBookById(5);
-        sqlSession.close();
+        System.out.println(book);
+
+        /*sqlSession.close();
 
         SqlSession sqlSession2 = MybatisUtil.getSqlSession();
         BookMapper bookMapper2 = sqlSession2.getMapper(BookMapper.class);
@@ -43,7 +45,7 @@ public class BookMapperTestCase {
         Book book2 = bookMapper2.findBookById(5);
         sqlSession2.close();
 
-        System.out.println(book);
+        System.out.println(book);*/
     }
 
     @Test
@@ -84,6 +86,26 @@ public class BookMapperTestCase {
         for (Book book : bookList) {
             System.out.println(book);
         }
+    }
+
+    @Test
+    public void saveTest() {
+        Book book = new Book();
+        book.setBookName("Head First Java 第三版");
+        book.setPrice(68.24);
+        book.setAuthorId(8);
+        book.setTypeId(12);
+
+        int id = bookMapper.save(book);
+        System.out.println(book.getId());
+
+        sqlSession.commit();
+    }
+
+    @Test
+    public void deleteByIdTest() {
+        bookMapper.deleteById(21);
+        sqlSession.commit();
     }
 
 }

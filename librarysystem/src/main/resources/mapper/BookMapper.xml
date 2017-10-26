@@ -22,24 +22,24 @@
         </association>
     </resultMap>
 
-    <select id="findBookById" parameterType="int" resultMap="bookMap">
-        SELECT
-            b.id,
-            b.book_name,
-            b.price,
-            author_id,
-            author_name,
-            type_id,
-            type_name
-        FROM
-            t_book b,
-            t_author a,
-            t_type t
-        WHERE
-            b.author_id = a.id
-        AND b.type_id = t.id
-        AND b.id = #{id};
-    </select>
+    <!--<select id="findBookById" parameterType="int" resultMap="bookMap">-->
+        <!--SELECT-->
+            <!--b.id,-->
+            <!--b.book_name,-->
+            <!--b.price,-->
+            <!--author_id,-->
+            <!--author_name,-->
+            <!--type_id,-->
+            <!--type_name-->
+        <!--FROM-->
+            <!--t_book b,-->
+            <!--t_author a,-->
+            <!--t_type t-->
+        <!--WHERE-->
+            <!--b.author_id = a.id-->
+        <!--AND b.type_id = t.id-->
+        <!--AND b.id = #{id};-->
+    <!--</select>-->
 
     <!--<select id="findBookById" parameterType="int" resultType="book">
         SELECT
@@ -62,7 +62,7 @@
         AND b.id = #{id};
     </select>-->
     
-    <select id="findPage" resultType="Book">
+    <!--<select id="findPage" resultType="Book">
        SELECT
             b.id,
             b.book_name,
@@ -81,7 +81,7 @@
             b.author_id = a.id
         AND b.type_id = t.id
         LIMIT #{offset},#{size};
-    </select>
+    </select>-->
 
     <select id="findByTypeId" parameterType="int" resultType="book" >
         SELECT
@@ -149,4 +149,19 @@
                 #{id}
             </foreach>
     </select>
+
+    <!--<insert id="save" parameterType="book" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO t_book (
+            book_name,
+            price,
+            author_id,
+            type_id
+        )
+        VALUES
+            (#{bookName},#{price},#{authorId},#{typeId});
+    </insert>
+
+    <delete id="deleteById" parameterType="int">
+        DELETE FROM t_book WHERE id = #{id}
+    </delete>-->
 </mapper>
