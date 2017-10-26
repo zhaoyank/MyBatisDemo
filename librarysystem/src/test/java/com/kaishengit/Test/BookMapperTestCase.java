@@ -8,7 +8,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by zhao on 2017/10/24.
@@ -47,6 +50,30 @@ public class BookMapperTestCase {
     public void findByTypeIdTest() {
         List<Book> bookList = bookMapper.findByTypeId(8);
         for(Book book : bookList) {
+            System.out.println(book);
+        }
+    }
+
+    @Test
+    public void findByParamTest() {
+        Map<String, Object> searchMap = new HashMap<>();
+        searchMap.put("bookName", "%java%");
+        searchMap.put("typeName", "%计算机%");
+        // searchMap.put("authorName", "周志明");
+
+        List<Book> bookList = bookMapper.findByParam(searchMap);
+
+        for (Book book : bookList) {
+            System.out.println(book);
+        }
+    }
+
+    @Test
+    public void findByIdsTest() {
+        List<Integer> idList = Arrays.asList(3,5,7);
+
+        List<Book> bookList = bookMapper.findByIds(idList);
+        for (Book book : bookList) {
             System.out.println(book);
         }
     }

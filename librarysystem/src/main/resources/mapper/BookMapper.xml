@@ -101,4 +101,50 @@
         AND b.type_id = t.id
         AND b.type_id = #{typeId}
     </select>
+
+    <select id="findByParam" parameterType="map" resultMap="bookMap">
+        SELECT
+            b.id,
+            book_name,
+            price,
+            author_id,
+            author_name,
+            type_id,
+            type_name
+        FROM
+            t_book b
+        INNER JOIN t_type t ON b.type_id = t.id
+        INNER JOIN t_author a ON b.author_id = a.id
+        <where>
+            <if test="typeName != null and typeName != ''">
+                type_name LIKE #{typeName}
+            </if>
+            <if test="authorName != null and authorName != ''">
+                AND author_name LIKE #{authorName}
+            </if>
+            <if test="bookName != null and bookName != ''">
+                AND book_name LIKE #{bookName}
+            </if>
+        </where>
+    </select>
+
+    <select id="findByIds" parameterType="list" resultMap="bookMap">
+        SELECT
+            b.id,
+            book_name,
+            price,
+            author_id,
+            author_name,
+            type_id,
+            type_name
+        FROM
+            t_book b
+        INNER JOIN t_type t ON b.type_id = t.id
+        INNER JOIN t_author a ON b.author_id = a.id
+        WHERE
+            b.id IN
+            <foreach collection="list" item="id" separator="," open="(" close=")">
+                #{id}
+            </foreach>
+    </select>
 </mapper>
