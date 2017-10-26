@@ -27,5 +27,6 @@
         <mapper resource="mapper/BookMapper.xml"/>
         <mapper resource="mapper/AuthorMapper.xml"/>
         <mapper resource="mapper/TypeMapper.xml"/>
+        <mapper resource="mapper/StudentMapper.xml"/>
     </mappers>
 </configuration>
