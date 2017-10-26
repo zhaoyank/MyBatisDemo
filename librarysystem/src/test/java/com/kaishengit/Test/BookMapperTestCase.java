@@ -35,6 +35,14 @@ public class BookMapperTestCase {
     @Test
     public void findBookByIdTest() {
         Book book = bookMapper.findBookById(5);
+        sqlSession.close();
+
+        SqlSession sqlSession2 = MybatisUtil.getSqlSession();
+        BookMapper bookMapper2 = sqlSession2.getMapper(BookMapper.class);
+
+        Book book2 = bookMapper2.findBookById(5);
+        sqlSession2.close();
+
         System.out.println(book);
     }
 
@@ -58,8 +66,8 @@ public class BookMapperTestCase {
     public void findByParamTest() {
         Map<String, Object> searchMap = new HashMap<>();
         searchMap.put("bookName", "%java%");
-        searchMap.put("typeName", "%计算机%");
-        // searchMap.put("authorName", "周志明");
+        //searchMap.put("typeName", "%计算机%");
+        searchMap.put("authorName", "周志明");
 
         List<Book> bookList = bookMapper.findByParam(searchMap);
 

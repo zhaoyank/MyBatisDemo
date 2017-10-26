@@ -1,9 +1,11 @@
 package com.kaishengit.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by zhao on 2017/10/24.
  */
-public class Author {
+public class Author implements Serializable {
 
     private Integer id;
     private String authorName;

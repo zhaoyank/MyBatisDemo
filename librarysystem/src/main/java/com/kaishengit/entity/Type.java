@@ -1,9 +1,12 @@
 package com.kaishengit.entity;
 
+import javax.naming.directory.SearchResult;
+import java.io.Serializable;
+
 /**
  * Created by zhao on 2017/10/24.
  */
-public class Type {
+public class Type implements Serializable {
 
     private Integer id;
     private String typeName;
