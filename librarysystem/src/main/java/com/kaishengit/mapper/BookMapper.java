@@ -39,6 +39,17 @@ public interface BookMapper {
             @Result(property = "type", column = "type_id",one = @One(select = "com.kaishengit.mapper.TypeMapper.findById"))
     })
     List<Book> findPage(@Param("offset")int offset, @Param("size") int size);
+
+    @Select("select * from t_book where type_id = #{typeId}")
+    @Results({
+            @Result(property = "id", column = "id"),
+            @Result(property = "bookName", column = "book_name"),
+            @Result(property = "price", column = "price"),
+            @Result(property = "authorId", column = "author_id"),
+            @Result(property = "typeId", column = "type_id"),
+            @Result(property = "author", column = "author_id", one = @One(select = "com.kaishengit.mapper.AuthorMapper.findById")),
+            @Result(property = "type", column = "type_id",one = @One(select = "com.kaishengit.mapper.TypeMapper.findById"))
+    })
     List<Book> findByTypeId(Integer typeId);
 
     List<Book> findByParam(Map<String, Object> serachMap);

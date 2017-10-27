@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by zhao on 2017/10/24.
+ * @Author zhao
  */
 public class BookMapperTestCase {
 
@@ -58,7 +58,7 @@ public class BookMapperTestCase {
 
     @Test
     public void findByTypeIdTest() {
-        List<Book> bookList = bookMapper.findByTypeId(8);
+        List<Book> bookList = bookMapper.findByTypeId(12);
         for(Book book : bookList) {
             System.out.println(book);
         }
