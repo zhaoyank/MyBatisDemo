@@ -1,5 +1,6 @@
 package com.kaishengit.mapper;
 
+import com.github.pagehelper.PageHelper;
 import com.kaishengit.com.kaishengit.util.MyBatisUtil;
 import com.kaishengit.entity.Book;
 import com.kaishengit.entity.BookExample;
@@ -32,6 +33,7 @@ public class GeneratorTestCase {
 
     @Test
     public void selectAllTest() {
+        PageHelper.startPage(1,5);
         List<Book> bookList = bookMapper.selectByExample(new BookExample());
         for (Book book : bookList) {
             System.out.println(book);

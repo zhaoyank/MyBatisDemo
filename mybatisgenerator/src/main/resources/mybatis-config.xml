@@ -3,14 +3,22 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 
+    <!--将数据库中下划线命名映射Java中驼峰命名-->
     <settings>
         <setting name="mapUnderscoreToCamelCase" value="true"/>
     </settings>
 
+    <!--使用别名 在name下的类别名为类名首字母小写-->
     <typeAliases>
         <package name="com.kaishengit.entity"/>
     </typeAliases>
 
+    <!--配置分页插件-->
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor"></plugin>
+    </plugins>
+
+    <!--配置环境-->
     <environments default="dev">
         <environment id="dev">
             <transactionManager type="JDBC"/>
